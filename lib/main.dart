@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ieee/onboarding_screen/sign_up.dart';
+import 'package:ieee/login/login_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,10 +11,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'IEEE Platform',
-      home: Signup(),
+      home: LoginView(),
     );
   }
 }
