@@ -38,7 +38,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
                     child: Text(
-                      "Login",
+                      "Log In",
                       style: GoogleFonts.montserrat(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -135,7 +135,9 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               ),
               CustomTextButton(
                 text: 'Sign up',
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
             ],
           ),

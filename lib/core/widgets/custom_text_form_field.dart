@@ -32,7 +32,7 @@ class CustomTextFormField extends StatelessWidget {
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
-        prefixIcon: const Icon(Icons.person),
+        prefixIcon:  Icon(prefixIcon),
         suffixIcon: IconButton(
           onPressed: onSuffixIconPressed,
           icon: Icon(suffixIcon),

@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:ieee/constants.dart';
+import '../../core/widgets/custom_button.dart';
 
-class SignupPersonal extends StatefulWidget {
-  const SignupPersonal({super.key});
+class SignupPersonalViewBody extends StatefulWidget {
+
+   const SignupPersonalViewBody({super.key});
 
   @override
-  State<SignupPersonal> createState() => _OnBoradingScreenState();
+  State<SignupPersonalViewBody> createState() => _SignupPersonalViewBodyState ();
 }
 
-class _OnBoradingScreenState extends State<SignupPersonal> {
-  bool isShown = false;
-  TextEditingController emailaddress = TextEditingController();
-  TextEditingController password = TextEditingController();
+class _SignupPersonalViewBodyState extends State<SignupPersonalViewBody> {
+
   TextEditingController username = TextEditingController();
+  TextEditingController fisrtName = TextEditingController();
+  TextEditingController lastName = TextEditingController();
+  TextEditingController facultyDep = TextEditingController();
+  TextEditingController faculty = TextEditingController();
+  TextEditingController gradYear = TextEditingController();
+  TextEditingController university = TextEditingController();
+  TextEditingController birthDate = TextEditingController();
+  TextEditingController phoneNumber = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   @override
@@ -24,44 +31,6 @@ class _OnBoradingScreenState extends State<SignupPersonal> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start, // Add this line
           children: [
-            Stack(
-              children: [
-                Container(
-                  height: 180,
-                  color: Colors.grey[200],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(
-                      height: 100,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        "Sign Up",
-                        style: GoogleFonts.montserrat(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: Text(
-                        "Enter your details below & free sign up",
-                        style: GoogleFonts.montserrat(
-                            fontSize: 16, color: Colors.grey),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
             const SizedBox(
               height: 40,
             ),
@@ -74,7 +43,7 @@ class _OnBoradingScreenState extends State<SignupPersonal> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Text("Username",
+                      child: Text("First Name",
                           style: GoogleFonts.montserrat(color: Colors.grey)),
                     ),
                     const SizedBox(
@@ -84,16 +53,16 @@ class _OnBoradingScreenState extends State<SignupPersonal> {
                       onFieldSubmitted: (String value) {},
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Username must not be empty";
+                          return "Fisrt Name must not be empty";
                         }
                         return null;
                       },
                       keyboardType: TextInputType.text,
-                      controller: username,
+                      controller: fisrtName,
                       decoration: InputDecoration(
-                          hintText: "Username",
+                          hintText: "First Name",
                           prefixIcon: const Icon(Icons.person),
-                          labelText: "Username",
+                          labelText: "First Name",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                           )),
@@ -101,28 +70,30 @@ class _OnBoradingScreenState extends State<SignupPersonal> {
                     const SizedBox(
                       height: 10,
                     ),
+
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Text("Email Address",
+                      child: Text("Last Name",
                           style: GoogleFonts.montserrat(color: Colors.grey)),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
-                      onFieldSubmitted: (String value) {},
-                      keyboardType: TextInputType.emailAddress,
-                      controller: emailaddress,
+                      onFieldSubmitted: (String value) {
+                      },
+                      keyboardType: TextInputType.text,
+                      controller: lastName,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Email Address must not be empty";
+                          return "Last Name must not be empty";
                         }
                         return null;
                       },
                       decoration: InputDecoration(
-                          hintText: "Create an account here",
-                          prefixIcon: const Icon(Icons.email),
-                          labelText: "Email Address",
+                          hintText: "Last Name",
+                          prefixIcon: const Icon(Icons.person),
+                          labelText: "Last Name",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                           )),
@@ -139,6 +110,7 @@ class _OnBoradingScreenState extends State<SignupPersonal> {
                       height: 10,
                     ),
                     TextFormField(
+                      controller: phoneNumber,
                       onFieldSubmitted: (String value) {},
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -160,7 +132,7 @@ class _OnBoradingScreenState extends State<SignupPersonal> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 8.0),
-                      child: Text("Password",
+                      child: Text("Birth Date",
                           style: GoogleFonts.montserrat(color: Colors.grey)),
                     ),
                     const SizedBox(
@@ -170,67 +142,167 @@ class _OnBoradingScreenState extends State<SignupPersonal> {
                       onFieldSubmitted: (String value) {},
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return "Password must not be empty";
+                          return "Birth Date must not be empty";
                         }
                         return null;
                       },
                       keyboardType: TextInputType.text,
-                      controller: password,
-                      obscureText: isShown,
+                      controller: birthDate,
                       decoration: InputDecoration(
-                          hintText: "Password",
-                          prefixIcon: const Icon(Icons.lock),
-                          suffixIcon: !isShown
-                              ? IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      isShown = !isShown;
-                                    });
-                                  },
-                                  icon: const Icon(Icons.visibility))
-                              : IconButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      isShown = !isShown;
-                                    });
-                                  },
-                                  icon: const Icon(Icons.visibility_off)),
-                          labelText: "Password",
+                          hintText: "Ex: 2001-04-01",
+                          prefixIcon: const Icon(Icons.cake),
+                          labelText: "Birth Date",
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                           )),
                     ),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text("Universty",
+                          style: GoogleFonts.montserrat(color: Colors.grey)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      onFieldSubmitted: (String value) {},
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Universty must not be empty";
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.text,
+                      controller: university,
+                      decoration: InputDecoration(
+                          hintText: "Ex: Zagazig",
+                          prefixIcon: const Icon(Icons.school),
+                          labelText: "Universty",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          )),
+                    ),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text("Faculty",
+                          style: GoogleFonts.montserrat(color: Colors.grey)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      onFieldSubmitted: (String value) {},
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Faculty must not be empty";
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.text,
+                      controller: faculty,
+                      decoration: InputDecoration(
+                          hintText: "Ex: Engineering",
+                          prefixIcon: const Icon(Icons.school),
+                          labelText: "Faculty",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          )),
+                    ),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text("Faculty Department",
+                          style: GoogleFonts.montserrat(color: Colors.grey)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      onFieldSubmitted: (String value) {},
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Faculty Department must not be empty";
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.text,
+                      controller: facultyDep,
+                      decoration: InputDecoration(
+                          hintText: "Ex: Electrical",
+                          prefixIcon: const Icon(Icons.school),
+                          labelText: "Faculty Department",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          )),
+                    ),
+
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0),
+                      child: Text("Graduation Year",
+                          style: GoogleFonts.montserrat(color: Colors.grey)),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      onTap: (){
+
+                      },
+                      onFieldSubmitted: (String value) {},
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Graduation Year must not be empty";
+                        }
+                        return null;
+                      },
+                      keyboardType: TextInputType.number,
+                      controller: gradYear,
+                      decoration: InputDecoration(
+                          hintText: "Ex: 2024",
+                          prefixIcon: const Icon(Icons.schedule),
+                          labelText: "Graduation Year",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          )),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+
+                    Center(
+                      child: CustomButton(
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                          }
+                        },
+                        text: 'Sign Up',
+                      ),
+                    ),
+
                   ],
                 ),
               ),
             ),
-            Center(
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Already have an account?",
-                    style: GoogleFonts.montserrat()),
-                TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Log in!",
-                      style: GoogleFonts.montserrat(
-                        color: kPrimaryColor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ))
-              ],
-            )),
+
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          formKey.currentState!.validate();
-        },
-        backgroundColor: kPrimaryColor,
-        child: const Icon(Icons.arrow_forward_outlined),
-      ),
+
     );
   }
 }
